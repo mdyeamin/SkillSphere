@@ -26,7 +26,9 @@ const NavBar = () => {
             href="/"
             className="flex items-center gap-2 font-extrabold text-[15px] text-gray-900 shrink-0 mr-6"
           >
-            <Image src="/logo.png" alt="SkillSphere" width={20} height={20} />
+            <Image src="/logo.png" 
+            alt="SkillSphere"
+             width={20} height={20} />
             SkillSphere
           </Link>
 
