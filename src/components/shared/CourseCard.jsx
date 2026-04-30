@@ -54,7 +54,7 @@ const CourseCard = ({ course }) => {
 
             <div className="flex items-center gap-2 text-gray-500">
               <LuClock3 className="text-lg" />
-              <span className="text-sm font-semibold">42h 30m</span>
+              <span className="text-sm font-semibold">{duration}</span>
             </div>
           </div>
 
