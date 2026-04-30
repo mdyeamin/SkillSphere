@@ -1,4 +1,3 @@
-import NotFound from "@/app/not-found";
 import { getCOurseDetails } from "@/data";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -22,9 +21,9 @@ const CourseDetails = async ({ params }) => {
   // console.log(id);
   const courseDetails = await getCOurseDetails(Number(id));
   console.log(courseDetails);
-  
+
   if (!courseDetails.title) {
-    notFound(); 
+    notFound();
   }
   const {
     title,

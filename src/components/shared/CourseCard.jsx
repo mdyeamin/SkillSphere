@@ -1,8 +1,9 @@
+"use client";
 import { AiOutlineStar } from "react-icons/ai";
 import { LuClock3 } from "react-icons/lu";
 import Image from "next/image";
 import Link from "next/link";
-
+import { motion } from "framer-motion";
 const CourseCard = ({ course }) => {
   const {
     title,
@@ -17,7 +18,18 @@ const CourseCard = ({ course }) => {
 
   return (
     <>
-      <div className="group relative max-w-[380px] mx-auto bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col font-sans transition-all duration-300 hover:shadow-lg">
+      <motion.div
+        initial={{ opacity: 0, y: 24, scale: 0.96 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.25 }}
+        
+        whileTap={{ scale: 0.97 }}
+        transition={{
+          duration: 0.55,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="group relative max-w-[380px] mx-auto bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col font-sans transition-all duration-300 hover:shadow-lg"
+      >
         <div className="absolute top-0 left-0 w-full h-[4px] bg-[#914C00] z-20 transition-all duration-500 ease-out translate-x-[-100%] group-hover:translate-x-0"></div>
 
         <div className="relative h-[210px] w-full p-2.5">
@@ -78,7 +90,7 @@ const CourseCard = ({ course }) => {
             </button>
           </Link>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
