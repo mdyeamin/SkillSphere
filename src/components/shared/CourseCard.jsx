@@ -2,6 +2,7 @@ import { AiOutlineStar } from "react-icons/ai";
 import { LuClock3 } from "react-icons/lu";
 import Image from "next/image";
 import Link from "next/link";
+
 const CourseCard = ({ course }) => {
   const {
     title,
@@ -16,7 +17,7 @@ const CourseCard = ({ course }) => {
 
   return (
     <>
-      <div className="group relative max-w-[380px] bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col font-sans transition-all duration-300 hover:shadow-lg">
+      <div className="group relative max-w-[380px] mx-auto bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col font-sans transition-all duration-300 hover:shadow-lg">
         <div className="absolute top-0 left-0 w-full h-[4px] bg-[#914C00] z-20 transition-all duration-500 ease-out translate-x-[-100%] group-hover:translate-x-0"></div>
 
         <div className="relative h-[210px] w-full p-2.5">
