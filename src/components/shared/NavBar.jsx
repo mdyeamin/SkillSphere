@@ -4,14 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { MdMenuOpen, MdOutlineRestaurantMenu } from "react-icons/md";
+import { Avatar } from "@heroui/react";
 // import logo from 'logo.png'
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Courses", href: "/courses" },
   { label: " My Profile", href: "/my-profile" },
-  //   { label: "My Learning", href: "/my-learning" },
-  //   { label: "Instructors", href: "/instructors" },
-  //   { label: "Resources", href: "/resources" },
+  { label: "Resources", href: "/resources" },
 ];
 
 const NavBar = () => {
@@ -26,9 +25,7 @@ const NavBar = () => {
             href="/"
             className="flex items-center gap-2 font-extrabold text-[15px] text-gray-900 shrink-0 mr-6"
           >
-            <Image src="/logo.png" 
-            alt="SkillSphere"
-             width={20} height={20} />
+            <Image src="/logo.png" alt="SkillSphere" width={25} height={25} />
             SkillSphere
           </Link>
 
@@ -79,6 +76,13 @@ const NavBar = () => {
             <button className="px-5 py-1.5 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md transition-colors">
               Sign Up
             </button>
+            <Avatar >
+              <Avatar.Image
+                alt="John Doe"
+                src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
+              />
+              <Avatar.Fallback>JD</Avatar.Fallback>
+            </Avatar>
           </div>
 
           <button
@@ -88,6 +92,7 @@ const NavBar = () => {
           >
             {isOpen ? <MdOutlineRestaurantMenu /> : <MdMenuOpen />}
           </button>
+        
         </div>
 
         {isOpen && (
@@ -118,6 +123,7 @@ const NavBar = () => {
               <button className="w-full py-2 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md">
                 Sign Up
               </button>
+              
             </div>
           </div>
         )}
