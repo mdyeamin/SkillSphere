@@ -7,7 +7,8 @@ const MainLayout = ({ children }) => {
     <div>
       <NavBar />
       <main>{children}</main>
-      <Footer/>
+
+      <Footer />
     </div>
   );
 };

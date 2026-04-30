@@ -70,12 +70,16 @@ const NavBar = () => {
             />
           </div>
           <div className="hidden md:flex items-center gap-2.5 ml-auto">
+            <Link href={'/login'}>
             <button className="px-4 py-1.5 text-sm font-medium text-gray-800 hover:bg-gray-100 rounded-md transition-colors">
               Log In
             </button>
+            </Link>
+            <Link href={'/register'}>
             <button className="px-5 py-1.5 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md transition-colors">
               Sign Up
             </button>
+            </Link>
             <Avatar >
               <Avatar.Image
                 alt="John Doe"
@@ -117,12 +121,16 @@ const NavBar = () => {
               })}
             </div>
             <div className="flex flex-col gap-2 px-4 pb-4 pt-3 border-t border-gray-100">
+              <Link href={"/login"}>
               <button className="w-full py-2 text-sm font-medium border border-gray-200 rounded-md hover:bg-gray-50">
                 Log In
               </button>
+              </Link>
+              <Link href={"/register"}>
               <button className="w-full py-2 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md">
                 Sign Up
               </button>
+              </Link>
               
             </div>
           </div>
