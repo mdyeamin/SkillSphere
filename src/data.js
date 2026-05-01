@@ -1,9 +1,10 @@
 export const getCourse = async () => {
   const res = await fetch(
     "https://skill-sphere-server-dgqe.onrender.com/courses",
+    { cache: "no-store" },
   );
-  const courses = await res.json();
-  return courses;
+ return res.json();
+
 };
 export const getCourseDetails = async (id) => {
   const res = await fetch(
@@ -13,8 +14,10 @@ export const getCourseDetails = async (id) => {
   return courses;
 };
 
-export const getCategory =  async() => {
-  const res =  await fetch("https://skill-sphere-server-dgqe.onrender.com/category")
- const category = await res.json()
- return category
+export const getCategory = async () => {
+  const res = await fetch(
+    "https://skill-sphere-server-dgqe.onrender.com/category",
+  );
+  const category = await res.json();
+  return category;
 };
