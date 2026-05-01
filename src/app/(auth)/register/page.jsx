@@ -32,19 +32,24 @@ export default function RegisterPage() {
 
     console.log(formData, "dd");
     const { data, error } = await authClient.signUp.email({
-      name: formData.name,// required
-      email:formData.email ,// required
-      password:formData.password, // required
+      name: formData.name, // required
+      email: formData.email, // required
+      password: formData.password, // required
       image: formData.image,
       callbackURL: "/",
     });
     console.log(data, error);
   };
 
+  const signInWithGoogle = async () => {
+     await authClient.signIn.social({
+      provider: "google",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-100 via-gray-50 to-orange-50/60 flex flex-col items-center justify-center px-4 py-10">
       <div className="w-full max-w-4xl bg-white rounded-2xl border border-gray-100 shadow-md overflow-hidden grid grid-cols-1 md:grid-cols-[1fr_1.3fr]">
-        
         <div className="hidden md:flex flex-col justify-between p-10 bg-gradient-to-br from-stone-50 to-orange-50/50 border-r border-stone-100">
           <div>
             <div className="flex items-center gap-2 mb-10">
@@ -78,7 +83,6 @@ export default function RegisterPage() {
           </div>
         </div>
 
-        
         <div className="p-8 sm:p-12 lg:p-14 flex flex-col justify-center">
           <div className="mb-7">
             <h1 className="text-xl font-bold text-gray-900 tracking-tight">
@@ -212,6 +216,7 @@ export default function RegisterPage() {
             </div>
 
             <Button
+            onClick={signInWithGoogle}
               type="button"
               className="w-full h-11 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 text-sm font-medium text-gray-600 transition-colors flex items-center justify-center gap-2"
             >
@@ -233,7 +238,7 @@ export default function RegisterPage() {
                   d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                 />
               </svg>
-              Login with Google
+              SignIn with Google
             </Button>
 
             <p className="text-center text-sm text-gray-400 mt-1">
