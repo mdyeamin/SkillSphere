@@ -20,7 +20,7 @@ const AllCourse = async ({ searchParams }) => {
     .filter((course) =>
       searchQuery ? course.title.toLowerCase().includes(searchQuery) : true,
     );
-  console.log(filteredCourses, 555);
+
 
   return (
     <section>

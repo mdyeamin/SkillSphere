@@ -19,9 +19,9 @@ import {
 
 const CourseDetails = async ({ params }) => {
   const { id } = await params;
-  // console.log(id);
+
   const courseDetails = await getCourseDetails(Number(id));
-  console.log(courseDetails);
+ 
 
   if (!courseDetails.title) {
     notFound();
