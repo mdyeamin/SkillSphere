@@ -13,15 +13,22 @@ import {
   Button,
 } from "@heroui/react";
 import { FiMail, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
+import { authClient } from "@/app/lib/auth-client";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const onSubmit = (e) => {
+  const onSubmit =async (e) => {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget));
-    console.log(data);
+    const formData = Object.fromEntries(new FormData(e.currentTarget));
+    
+    const { data, error } = await authClient.signIn.email({
+    email: formData.email, // required
+    password: formData.password, // required
+    rememberMe: true,
+    callbackURL: "/",
+});
     setSuccess(true);
     setTimeout(() => setSuccess(false), 3000);
   };
