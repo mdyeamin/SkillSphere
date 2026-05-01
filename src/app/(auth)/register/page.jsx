@@ -21,21 +21,30 @@ import {
   FiEyeOff,
   FiArrowRight,
 } from "react-icons/fi";
-
+import { authClient } from "@/app/lib/auth-client";
 
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget));
-    console.log(data);
+    const formData = Object.fromEntries(new FormData(e.currentTarget));
+
+    console.log(formData, "dd");
+    const { data, error } = await authClient.signUp.email({
+      name: formData.name,// required
+      email:formData.email ,// required
+      password:formData.password, // required
+      image: formData.image,
+      callbackURL: "/",
+    });
+    console.log(data, error);
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-100 via-gray-50 to-orange-50/60 flex flex-col items-center justify-center px-4 py-10">
       <div className="w-full max-w-4xl bg-white rounded-2xl border border-gray-100 shadow-md overflow-hidden grid grid-cols-1 md:grid-cols-[1fr_1.3fr]">
-        {/* ── Left panel ── */}
+        
         <div className="hidden md:flex flex-col justify-between p-10 bg-gradient-to-br from-stone-50 to-orange-50/50 border-r border-stone-100">
           <div>
             <div className="flex items-center gap-2 mb-10">
@@ -69,7 +78,7 @@ export default function RegisterPage() {
           </div>
         </div>
 
-        {/* ── Right panel ── */}
+        
         <div className="p-8 sm:p-12 lg:p-14 flex flex-col justify-center">
           <div className="mb-7">
             <h1 className="text-xl font-bold text-gray-900 tracking-tight">
@@ -85,7 +94,7 @@ export default function RegisterPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <TextField
                 isRequired
-                name="fullName"
+                name="name"
                 className="flex flex-col gap-1.5"
               >
                 <Label className="text-xs font-semibold text-gray-600">
@@ -101,14 +110,14 @@ export default function RegisterPage() {
                 <FieldError className="text-[11px] text-red-500" />
               </TextField>
 
-              <TextField name="photoUrl" className="flex flex-col gap-1.5">
+              <TextField name="image" className="flex flex-col gap-1.5">
                 <Label className="text-xs font-semibold text-gray-600">
                   Photo URL
                 </Label>
                 <div className="relative">
                   <FiImage className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <Input
-                    type="url"
+                    type="text"
                     placeholder="https://example.com/avatar."
                     className="w-full h-10 pl-9 pr-3 rounded-lg border border-gray-200 bg-gray-50 text-sm text-gray-900 placeholder:text-gray-300 focus:outline-none focus:border-[#914C00] focus:ring-2 focus:ring-[#914C00]/10 focus:bg-white transition-colors"
                   />
