@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { MdMenuOpen, MdOutlineRestaurantMenu } from "react-icons/md";
 import { Avatar } from "@heroui/react";
+import { authClient } from "@/app/lib/auth-client";
+import { ClockLoader } from "react-spinners";
 // import logo from 'logo.png'
 const navItems = [
   { label: "Home", href: "/" },
@@ -14,6 +16,10 @@ const navItems = [
 ];
 
 const NavBar = () => {
+  const { data: session, isPending } = authClient.useSession();
+  const user = session?.user;
+  console.log(isPending);
+
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
@@ -69,24 +75,41 @@ const NavBar = () => {
               className="h-9 w-52 pl-8 pr-3 rounded-full border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:border-[#914C00] focus:bg-white transition-colors"
             />
           </div>
-          <div className="hidden md:flex items-center gap-2.5 ml-auto">
-            <Link href={'/login'}>
-            <button className="px-4 py-1.5 text-sm font-medium text-gray-800 hover:bg-gray-100 rounded-md transition-colors">
-              Log In
-            </button>
-            </Link>
-            <Link href={'/register'}>
-            <button className="px-5 py-1.5 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md transition-colors">
-              Sign Up
-            </button>
-            </Link>
-            <Avatar >
-              <Avatar.Image
-                alt="John Doe"
-                src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
-              />
-              <Avatar.Fallback>JD</Avatar.Fallback>
-            </Avatar>
+          <div className="">
+            {isPending ? (
+              <div className="w-full md:w-6/12 mx-auto">
+                <ClockLoader size={20} />
+              </div>
+            ) : user ? (
+              <div className="hidden md:flex items-center gap-2.5 ml-auto">
+                
+                  <button  onClick={async()=>await authClient.signOut()} className="px-5 py-1.5 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md transition-colors">
+                    Log Out
+                  </button>
+                
+                <div className="flex items-center">
+                  <Avatar>
+                  <Avatar.Image alt={user?.name} src={user?.image} />
+                  <Avatar.Fallback>U</Avatar.Fallback>
+                </Avatar>
+                <p className="text-xs p-2">Hi, {user?.name}</p>
+                </div>
+              </div>
+            ) : (
+              <div className="hidden md:flex items-center gap-2.5 ml-auto">
+                
+                <Link href={"/login"}>
+                  <button className="px-4 py-1.5 text-sm font-medium text-gray-800 hover:bg-gray-100 rounded-md transition-colors">
+                    Log In
+                  </button>
+                </Link>
+                <Link href={"/register"}>
+                  <button className="px-5 py-1.5 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md transition-colors">
+                    Sign Up
+                  </button>
+                </Link>
+              </div>
+            )}
           </div>
 
           <button
@@ -96,7 +119,6 @@ const NavBar = () => {
           >
             {isOpen ? <MdOutlineRestaurantMenu /> : <MdMenuOpen />}
           </button>
-        
         </div>
 
         {isOpen && (
@@ -122,16 +144,15 @@ const NavBar = () => {
             </div>
             <div className="flex flex-col gap-2 px-4 pb-4 pt-3 border-t border-gray-100">
               <Link href={"/login"}>
-              <button className="w-full py-2 text-sm font-medium border border-gray-200 rounded-md hover:bg-gray-50">
-                Log In
-              </button>
+                <button className="w-full py-2 text-sm font-medium border border-gray-200 rounded-md hover:bg-gray-50">
+                  Log In
+                </button>
               </Link>
               <Link href={"/register"}>
-              <button className="w-full py-2 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md">
-                Sign Up
-              </button>
+                <button className="w-full py-2 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md">
+                  Sign Up
+                </button>
               </Link>
-              
             </div>
           </div>
         )}
