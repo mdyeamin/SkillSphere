@@ -67,14 +67,7 @@ export default function LoginPage() {
         </div>
 
         <div className="p-6 sm:p-10 flex flex-col justify-center overflow-y-auto">
-          <div className="flex md:hidden items-center justify-center gap-2 mb-6">
-            <Image src="/logo.png" alt="SkillSphere" width={24} height={24} />
-            <span className="font-extrabold text-[15px] text-[#914C00]">
-              SkillSphere
-            </span>
-          </div>
-
-          {/* Heading */}
+          
           <div className="mb-5 text-center">
             <h1 className="text-xl font-black text-[#914C00] tracking-tight">
               SkillSphere

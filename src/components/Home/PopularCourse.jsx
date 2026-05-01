@@ -1,10 +1,10 @@
-import { getCOurse } from "@/data";
+import { getCourse } from "@/data";
 import React from "react";
 import CourseCard from "../shared/CourseCard";
 import Link from "next/link";
 
 const PopularCourse = async () => {
-  const popularCourse = await getCOurse();
+  const popularCourse = await getCourse();
 
   return (
     <section className="py-12 bg-gray-50 px-6 md:px-10">

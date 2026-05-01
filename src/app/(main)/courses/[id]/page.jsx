@@ -1,4 +1,5 @@
-import { getCOurseDetails } from "@/data";
+
+import { getCourseDetails } from "@/data";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -19,7 +20,7 @@ import {
 const CourseDetails = async ({ params }) => {
   const { id } = await params;
   // console.log(id);
-  const courseDetails = await getCOurseDetails(Number(id));
+  const courseDetails = await getCourseDetails(Number(id));
   console.log(courseDetails);
 
   if (!courseDetails.title) {
