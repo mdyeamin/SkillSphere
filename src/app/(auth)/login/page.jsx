@@ -11,6 +11,7 @@ import {
   Input,
   FieldError,
   Button,
+  Description,
 } from "@heroui/react";
 import { FiMail, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 import { authClient } from "@/app/lib/auth-client";
@@ -146,7 +147,7 @@ export default function LoginPage() {
                 <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <Input
                   placeholder="name@company.com"
-                  className="w-full h-10 pl-9 pr-3 rounded-lg border border-gray-200 bg-gray-50 text-sm text-gray-900 placeholder:text-gray-300 focus:outline-none focus:border-[#914C00] focus:ring-2 focus:ring-[#914C00]/10 focus:bg-white transition-colors invalid:border-red-400 invalid:bg-red-50/60"
+                  className="w-full h-10 pl-9 pr-3 rounded-lg border border-gray-200 bg-gray-50 text-sm text-gray-900 placeholder:text-gray-300 focus:outline-none focus:border-[#914C00] focus:ring-2 focus:ring-[#914C00]/10 focus:bg-white transition-colors "
                 />
               </div>
               <FieldError className="text-[11px] text-red-500" />
@@ -158,26 +159,20 @@ export default function LoginPage() {
               name="password"
               type={showPassword ? "text" : "password"}
               className="flex flex-col gap-1.5"
-              validate={(v) =>
-                v.length < 6 ? "Please enter your password" : null
-              }
+              validate={(v) => {
+                if (v.length < 8) return "Must be at least 8 characters long.";
+
+                return null;
+              }}
             >
-              <div className="flex items-center justify-between">
-                <Label className="text-xs font-semibold text-gray-600">
-                  Password
-                </Label>
-                <Link
-                  href="/forgot-password"
-                  className="text-[11px] text-[#914C00] hover:underline font-medium"
-                >
-                  Forgot password?
-                </Link>
-              </div>
+              <Label className="text-xs font-semibold text-gray-600">
+                Password
+              </Label>
               <div className="relative">
                 <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <Input
                   placeholder="••••••••"
-                  className="w-full h-10 pl-9 pr-10 rounded-lg border border-gray-200 bg-gray-50 text-sm text-gray-900 placeholder:text-gray-300 focus:outline-none focus:border-[#914C00] focus:ring-2 focus:ring-[#914C00]/10 focus:bg-white transition-colors invalid:border-red-400 invalid:bg-red-50/60"
+                  className="w-full h-10 pl-9 pr-10 rounded-lg border border-gray-200 bg-gray-50 text-sm text-gray-900 placeholder:text-gray-300 focus:outline-none focus:border-[#914C00] focus:ring-2 focus:ring-[#914C00]/10 focus:bg-white transition-colors "
                 />
                 <button
                   type="button"
@@ -191,6 +186,9 @@ export default function LoginPage() {
                   )}
                 </button>
               </div>
+              <Description className="text-[11px] text-gray-400 mt-0.5">
+                Must be at least 8 characters long.
+              </Description>
               <FieldError className="text-[11px] text-red-500" />
             </TextField>
 

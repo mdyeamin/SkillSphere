@@ -72,11 +72,7 @@ const CategoryFilterAndSearch = ({ selectedCategory, searchQuery }) => {
         </div>
 
         <div className="flex items-center gap-3 mb-10 overflow-x-auto pb-4 no-scrollbar">
-          {loading ? (
-            <div className="w-full md:w-6/12 mx-auto">
-              <ClockLoader size={20} />
-            </div>
-          ) : (
+          { (
             <>
               <button
                 onClick={() => handleCategoryClick("All")}

@@ -1,7 +1,8 @@
 import { getCourse } from "@/data";
-import React from "react";
+import React, { Suspense } from "react";
 import CourseCard from "../shared/CourseCard";
 import Link from "next/link";
+import { ClockLoader } from "react-spinners";
 
 const PopularCourse = async () => {
   const popularCourse = await getCourse();
@@ -31,11 +32,19 @@ const PopularCourse = async () => {
         </div>
 
         {/* Course Cards Grid */}
-        <div className="flex flex-wrap justify-center gap-8">
-          {popularCourse.slice(0, 3).map((course) => (
-            <CourseCard key={course.id} course={course} />
-          ))}
-        </div>
+        <Suspense
+          fallback={
+            <div className="w-12 h-screen mx-auto">
+              <ClockLoader size={100} />
+            </div>
+          }
+        >
+          <div className="flex flex-wrap justify-center gap-8">
+            {popularCourse.slice(0, 3).map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))}
+          </div>
+        </Suspense>
       </div>
     </section>
   );
