@@ -1,4 +1,3 @@
-
 import { getCourseDetails } from "@/data";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -17,11 +16,25 @@ import {
   LuUser,
 } from "react-icons/lu";
 
+export async function generateMetadata({ params, searchParams }, parent) {
+  const slug = (await params).id;
+  console.log(slug);
+
+  // fetch post information
+  const post = await fetch(
+    `https://skill-sphere-server-dgqe.onrender.com/courses/${slug}`,
+  ).then((res) => res.json());
+
+  return {
+    title: "SkillSphere ||" + " " + post?.title,
+    description: post?.description,
+  };
+}
+
 const CourseDetails = async ({ params }) => {
   const { id } = await params;
 
   const courseDetails = await getCourseDetails(Number(id));
- 
 
   if (!courseDetails.title) {
     notFound();

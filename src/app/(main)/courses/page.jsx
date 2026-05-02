@@ -4,6 +4,16 @@ import { getCourse } from "@/data";
 import React, { Suspense } from "react";
 import { ClockLoader } from "react-spinners";
 
+export async function generateMetadata({ params,  }, parent) {
+  
+
+
+
+  return {
+    title: "SkillSphere - Course"  ,
+    description: "Discover your next milestone from our curated expert library.",
+  };
+}
 const AllCourse = async ({ searchParams }) => {
   const params = await searchParams;
   const popularCourse = await getCourse();
