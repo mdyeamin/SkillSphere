@@ -19,7 +19,6 @@ import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const [success, setSuccess] = useState(false);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -244,34 +243,6 @@ export default function LoginPage() {
               </Link>
             </p>
           </Form>
-
-          {success && (
-            <div className="mt-4 flex items-center gap-3 p-3.5 rounded-xl bg-green-50 border border-green-200">
-              <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-                <svg
-                  className="w-4 h-4 text-green-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-green-800">
-                  Successfully Logged In
-                </p>
-                <p className="text-xs text-green-600">
-                  Redirecting to dashboard...
-                </p>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>
