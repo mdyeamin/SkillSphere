@@ -11,58 +11,60 @@ import {
   Surface,
   TextField,
 } from "@heroui/react";
+import { useState } from "react";
+
 import toast from "react-hot-toast";
 import { FaUserEdit } from "react-icons/fa";
 import { FiImage, FiUser } from "react-icons/fi";
-import { IoIosCloseCircle } from "react-icons/io";
+
 import { IoSend } from "react-icons/io5";
 import { LuSettings2 } from "react-icons/lu";
-
-
 const UpdateProfile = () => {
+    const [isOpen,setIsOpen]  = useState(false)
   const handleUpdateUser = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData.entries());
 
-    if (userData) {
-      await authClient.updateUser({
-        name: userData.name,
-        image: userData.image,
-      });
+   
+    try {
+         await authClient.updateUser({
+      name: userData.name,
+      image: userData.image,
+    });
       toast.success("Profile updated successfully!", {
-    style: {
-      background: "#fff",
-      color: "#1a1a1a",
-      border: "1px solid #e8e3de",
-      borderRadius: "12px",
-      fontSize: "13px",
-      fontWeight: "500",
-      padding: "12px 16px",
-    },
-    iconTheme: {
-      primary: "#914C00",
-      secondary: "#fff",
-    },
-  });
-    } else {
-        const notifyError = () =>
-  toast.error("Something went wrong. Please try again.", {
-    style: {
-      background: "#fff",
-      color: "#1a1a1a",
-      border: "1px solid #fecaca",
-      borderRadius: "12px",
-      fontSize: "13px",
-      fontWeight: "500",
-      padding: "12px 16px",
-    },
-    iconTheme: {
-      primary: "#ef4444",
-      secondary: "#fff",
-    },
-  });
+        style: {
+          background: "#fff",
+          color: "#1a1a1a",
+          border: "1px solid #e8e3de",
+          borderRadius: "12px",
+          fontSize: "13px",
+          fontWeight: "500",
+          padding: "12px 16px",
+        },
+        iconTheme: {
+          primary: "#914C00",
+          secondary: "#fff",
+        },
+      });
+     setIsOpen(true)
+    } catch {
+      toast.error("Something went wrong. Please try again.", {
+        style: {
+          background: "#fff",
+          color: "#1a1a1a",
+          border: "1px solid #fecaca",
+          borderRadius: "12px",
+          fontSize: "13px",
+          fontWeight: "500",
+          padding: "12px 16px",
+        },
+        iconTheme: {
+          primary: "#ef4444",
+          secondary: "#fff",
+        },
+      });
     }
   };
   return (
@@ -121,7 +123,11 @@ const UpdateProfile = () => {
                   </TextField>
 
                   {/* Photo URL */}
-                  <TextField name="image" className="flex flex-col gap-1.5">
+                  <TextField
+                    isRequired
+                    name="image"
+                    className="flex flex-col gap-1.5"
+                  >
                     <Label className="text-xs font-semibold text-gray-600">
                       Photo URL
                     </Label>
@@ -140,6 +146,7 @@ const UpdateProfile = () => {
                     <div className="flex flex-col gap-2.5 w-full">
                       {/* Update button */}
                       <Button
+                      slot={isOpen && "close"}
                         type="submit"
                         className="w-full h-11 flex items-center justify-center gap-2 bg-[#914C00] hover:bg-[#7a3f00] text-white rounded-xl font-bold text-sm transition-colors shadow-sm"
                       >

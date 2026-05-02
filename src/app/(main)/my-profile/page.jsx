@@ -28,6 +28,7 @@ const MyProfile = () => {
                   height={100}
                   src={user?.image}
                   alt={user?.name}
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
                 />
               </div>

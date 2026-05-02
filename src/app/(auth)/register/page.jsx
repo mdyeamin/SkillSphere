@@ -22,27 +22,61 @@ import {
   FiArrowRight,
 } from "react-icons/fi";
 import { authClient } from "@/app/lib/auth-client";
+import toast from "react-hot-toast";
 
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmit = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    const formData = Object.fromEntries(new FormData(e.currentTarget));
+    const formData = new FormData(e.currentTarget);
+    const userData = Object.fromEntries(formData.entries());
 
-    console.log(formData, "dd");
     const { data, error } = await authClient.signUp.email({
-      name: formData.name, // required
-      email: formData.email, // required
-      password: formData.password, // required
-      image: formData.image,
+      name: userData.name, // required
+      email: userData.email, // required
+      password: userData.password, // required
+      image: userData.image,
       callbackURL: "/",
     });
-    console.log(data, error);
+    if (data) {
+      toast.success("Register successfully!", {
+        style: {
+          background: "#fff",
+          color: "#1a1a1a",
+          border: "1px solid #e8e3de",
+          borderRadius: "12px",
+          fontSize: "13px",
+          fontWeight: "500",
+          padding: "12px 16px",
+        },
+        iconTheme: {
+          primary: "#914C00",
+          secondary: "#fff",
+        },
+      });
+    }
+    if (error) {
+      toast.error(`${error.message}`, {
+        style: {
+          background: "#fff",
+          color: "#1a1a1a",
+          border: "1px solid #fecaca",
+          borderRadius: "12px",
+          fontSize: "13px",
+          fontWeight: "500",
+          padding: "12px 16px",
+        },
+        iconTheme: {
+          primary: "#ef4444",
+          secondary: "#fff",
+        },
+      });
+    }
   };
 
   const signInWithGoogle = async () => {
-     await authClient.signIn.social({
+    await authClient.signIn.social({
       provider: "google",
     });
   };
@@ -93,7 +127,7 @@ export default function RegisterPage() {
             </p>
           </div>
 
-          <Form className="flex flex-col gap-4" onSubmit={onSubmit}>
+          <Form className="flex flex-col gap-4" onSubmit={handleRegister}>
             {/* Full Name + Photo URL */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <TextField
@@ -121,6 +155,7 @@ export default function RegisterPage() {
                 <div className="relative">
                   <FiImage className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <Input
+                    isRequired
                     type="text"
                     placeholder="https://example.com/avatar."
                     className="w-full h-10 pl-9 pr-3 rounded-lg border border-gray-200 bg-gray-50 text-sm text-gray-900 placeholder:text-gray-300 focus:outline-none focus:border-[#914C00] focus:ring-2 focus:ring-[#914C00]/10 focus:bg-white transition-colors"
@@ -216,7 +251,7 @@ export default function RegisterPage() {
             </div>
 
             <Button
-            onClick={signInWithGoogle}
+              onClick={signInWithGoogle}
               type="button"
               className="w-full h-11 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 text-sm font-medium text-gray-600 transition-colors flex items-center justify-center gap-2"
             >
