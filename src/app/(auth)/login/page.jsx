@@ -14,6 +14,7 @@ import {
 } from "@heroui/react";
 import { FiMail, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 import { authClient } from "@/app/lib/auth-client";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -29,6 +30,41 @@ export default function LoginPage() {
     rememberMe: true,
     callbackURL: "/",
 });
+if (data) {
+      toast.success("Login successfully!", {
+        style: {
+          background: "#fff",
+          color: "#1a1a1a",
+          border: "1px solid #e8e3de",
+          borderRadius: "12px",
+          fontSize: "13px",
+          fontWeight: "500",
+          padding: "12px 16px",
+        },
+        iconTheme: {
+          primary: "#914C00",
+          secondary: "#fff",
+        },
+      });
+      router.push("/")
+    }
+    if (error) {
+      toast.error(`${error.message}`, {
+        style: {
+          background: "#fff",
+          color: "#1a1a1a",
+          border: "1px solid #fecaca",
+          borderRadius: "12px",
+          fontSize: "13px",
+          fontWeight: "500",
+          padding: "12px 16px",
+        },
+        iconTheme: {
+          primary: "#ef4444",
+          secondary: "#fff",
+        },
+      });
+    }
     setSuccess(true);
     setTimeout(() => setSuccess(false), 3000);
   };

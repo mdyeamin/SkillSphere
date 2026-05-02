@@ -7,6 +7,7 @@ import { MdMenuOpen, MdOutlineRestaurantMenu } from "react-icons/md";
 import { Avatar } from "@heroui/react";
 import { authClient } from "@/app/lib/auth-client";
 import { ClockLoader } from "react-spinners";
+import toast from "react-hot-toast";
 // import logo from 'logo.png'
 const navItems = [
   { label: "Home", href: "/" },
@@ -82,22 +83,58 @@ const NavBar = () => {
               </div>
             ) : user ? (
               <div className="hidden md:flex items-center gap-2.5 ml-auto">
-                
-                  <button  onClick={async()=>await authClient.signOut()} className="px-5 py-1.5 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md transition-colors">
-                    Log Out
-                  </button>
-                
+                <button
+                  onClick={async () => {
+                    try {
+                      await authClient.signOut();
+                      toast.success("SignOut successfully!", {
+                        style: {
+                          background: "#fff",
+                          color: "#1a1a1a",
+                          border: "1px solid #e8e3de",
+                          borderRadius: "12px",
+                          fontSize: "13px",
+                          fontWeight: "500",
+                          padding: "12px 16px",
+                        },
+                        iconTheme: {
+                          primary: "#914C00",
+                          secondary: "#fff",
+                        },
+                      });
+                    } catch {
+                      toast.error("Something Went Wrong", {
+                        style: {
+                          background: "#fff",
+                          color: "#1a1a1a",
+                          border: "1px solid #fecaca",
+                          borderRadius: "12px",
+                          fontSize: "13px",
+                          fontWeight: "500",
+                          padding: "12px 16px",
+                        },
+                        iconTheme: {
+                          primary: "#ef4444",
+                          secondary: "#fff",
+                        },
+                      });
+                    }
+                  }}
+                  className="px-5 py-1.5 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md transition-colors"
+                >
+                  Log Out
+                </button>
+
                 <div className="flex items-center">
                   <Avatar>
-                  <Avatar.Image alt={user?.name} src={user?.image} />
-                  <Avatar.Fallback>U</Avatar.Fallback>
-                </Avatar>
-                <p className="text-xs p-2">Hi, {user?.name}</p>
+                    <Avatar.Image alt={user?.name} src={user?.image} />
+                    <Avatar.Fallback>U</Avatar.Fallback>
+                  </Avatar>
+                  <p className="text-xs p-2">Hi, {user?.name}</p>
                 </div>
               </div>
             ) : (
               <div className="hidden md:flex items-center gap-2.5 ml-auto">
-                
                 <Link href={"/login"}>
                   <button className="px-4 py-1.5 text-sm font-medium text-gray-800 hover:bg-gray-100 rounded-md transition-colors">
                     Log In

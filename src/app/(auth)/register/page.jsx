@@ -23,8 +23,9 @@ import {
 } from "react-icons/fi";
 import { authClient } from "@/app/lib/auth-client";
 import toast from "react-hot-toast";
-
+import { useRouter } from "next/navigation";
 export default function RegisterPage() {
+  const router = useRouter()
   const [showPassword, setShowPassword] = useState(false);
 
   const handleRegister = async (e) => {
@@ -37,7 +38,7 @@ export default function RegisterPage() {
       email: userData.email, // required
       password: userData.password, // required
       image: userData.image,
-      callbackURL: "/",
+      
     });
     if (data) {
       toast.success("Register successfully!", {
@@ -55,6 +56,7 @@ export default function RegisterPage() {
           secondary: "#fff",
         },
       });
+      router.push("/")
     }
     if (error) {
       toast.error(`${error.message}`, {
