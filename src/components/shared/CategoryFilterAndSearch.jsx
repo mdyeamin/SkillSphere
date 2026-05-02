@@ -34,7 +34,7 @@ const CategoryFilterAndSearch = ({ selectedCategory, searchQuery }) => {
 
   const handleCategoryClick = (categoryName) => {
     const params = new URLSearchParams(searchParams.toString());
-    console.log(categoryName, 333);
+
 
     if (categoryName === selectedCategory || categoryName === "All") {
       params.delete("category");

@@ -19,7 +19,7 @@ const navItems = [
 const NavBar = () => {
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
-  console.log(isPending);
+
 
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();

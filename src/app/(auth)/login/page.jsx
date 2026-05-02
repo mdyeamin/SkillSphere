@@ -20,17 +20,17 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const onSubmit =async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.currentTarget));
-    
+
     const { data, error } = await authClient.signIn.email({
-    email: formData.email, // required
-    password: formData.password, // required
-    rememberMe: true,
-    callbackURL: "/",
-});
-if (data) {
+      email: formData.email, // required
+      password: formData.password, // required
+      rememberMe: true,
+      callbackURL: "/",
+    });
+    if (data) {
       toast.success("Login successfully!", {
         style: {
           background: "#fff",
@@ -46,7 +46,7 @@ if (data) {
           secondary: "#fff",
         },
       });
-      router.push("/")
+      router.push("/");
     }
     if (error) {
       toast.error(`${error.message}`, {
@@ -68,7 +68,11 @@ if (data) {
     setSuccess(true);
     setTimeout(() => setSuccess(false), 3000);
   };
-
+  const signInWithGoogle = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-100 via-gray-50 to-orange-50/60 flex items-center justify-center px-4 py-6">
       <div className="w-full max-w-3xl bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden grid grid-cols-1 md:grid-cols-[1.1fr_1fr]">
@@ -110,7 +114,6 @@ if (data) {
         </div>
 
         <div className="p-6 sm:p-10 flex flex-col justify-center overflow-y-auto">
-          
           <div className="mb-5 text-center">
             <h1 className="text-xl font-black text-[#914C00] tracking-tight">
               SkillSphere
@@ -208,6 +211,7 @@ if (data) {
             </div>
 
             <Button
+              onClick={signInWithGoogle}
               type="button"
               className="w-full h-11 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 text-sm font-medium text-gray-600 transition-colors flex items-center justify-center gap-2"
             >

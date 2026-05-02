@@ -10,7 +10,7 @@ const MyProfile = () => {
   const { data, isPending } = authClient.useSession();
 
   const user = data?.user;
-  console.log(user?.name, isPending);
+
 
   return (
     <div className="p-6 bg-gray-50 min-h-[300px] flex items-center justify-center font-sans">
