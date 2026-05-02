@@ -38,18 +38,6 @@ SkillSphere is a modern online learning platform where users can explore courses
 | `react-icons` | Icon library |
 | `swiper` | Hero section slider/carousel |
 | `react-hook-form` | Form state management |
-| `react-hook-form` | Form state management |
 | `framer-motion` | Animations and transitions |
----
-
-## 🛠️ Tech Stack
-
-- **Framework:** Next.js (App Router)
-- **Styling:** Tailwind CSS
-- **UI Library:** HeroUI
-- **Auth:** BetterAuth
-- **Deployment:** Vercel
-- **database:** MongoDB Atlas
-
 ---
 
