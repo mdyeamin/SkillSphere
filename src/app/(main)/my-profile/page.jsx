@@ -33,9 +33,7 @@ const MyProfile = () => {
               </div>
 
               
-              <button className="absolute bottom-1 right-1 bg-[#ff8c00] p-2 rounded-full border-2 border-white text-white shadow-lg hover:bg-[#e67e00] transition-colors">
-                <LuPencil size={16} strokeWidth={3} />
-              </button>
+              
               
             </div>
 
