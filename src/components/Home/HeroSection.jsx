@@ -52,6 +52,59 @@ const courses = [
     duration: "30 hours",
     image: "/Full-StackWeb.jpeg",
   },
+  
+  {
+    title: "The Ultimate Guide to",
+    titleAccent: "Cyber Security",
+    instructor: "Sarah Jenkins",
+    rating: 4.7,
+    totalRating: 12450,
+    activeStudents: "5k+",
+    tag: "Security",
+    description:
+      "Protect networks and data from hackers. Learn ethical hacking, encryption, and network security from scratch.",
+    duration: "18 hours",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    title: "Mastering Mobile Apps with",
+    titleAccent: "React Native",
+    instructor: "David Chen",
+    rating: 4.9,
+    totalRating: 9840,
+    activeStudents: "6k+",
+    tag: "Hot & New",
+    description:
+      "Build high-performance native iOS and Android apps using a single JavaScript codebase with React Native.",
+    duration: "25 hours",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    title: "Machine Learning &",
+    titleAccent: "Artificial Intelligence",
+    instructor: "Dr. Aris Vogt",
+    rating: 4.9,
+    totalRating: 15200,
+    activeStudents: "9k+",
+    tag: "Advanced",
+    description:
+      "Dive deep into neural networks, deep learning, and predictive modeling using TensorFlow and PyTorch.",
+    duration: "40 hours",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    title: "Digital Marketing",
+    titleAccent: "Masterclass 2026",
+    instructor: "Laura Knight",
+    rating: 4.6,
+    totalRating: 21000,
+    activeStudents: "15k+",
+    tag: "Marketing",
+    description:
+      "Grow any business with SEO, Social Media Marketing, and Google Ads. Learn to drive traffic and convert sales.",
+    duration: "12 hours",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+  },
 ];
 
 const HeroSection = () => {
