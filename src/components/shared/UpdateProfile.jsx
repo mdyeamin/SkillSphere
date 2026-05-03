@@ -20,19 +20,18 @@ import { FiImage, FiUser } from "react-icons/fi";
 import { IoSend } from "react-icons/io5";
 import { LuSettings2 } from "react-icons/lu";
 const UpdateProfile = () => {
-    const [isOpen,setIsOpen]  = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const handleUpdateUser = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData.entries());
 
-   
     try {
-         await authClient.updateUser({
-      name: userData.name,
-      image: userData.image,
-    });
+      await authClient.updateUser({
+        name: userData.name,
+        image: userData.image,
+      });
       toast.success("Profile updated successfully!", {
         style: {
           background: "#fff",
@@ -48,7 +47,7 @@ const UpdateProfile = () => {
           secondary: "#fff",
         },
       });
-     setIsOpen(true)
+      setIsOpen(true);
     } catch {
       toast.error("Something went wrong. Please try again.", {
         style: {
@@ -69,8 +68,8 @@ const UpdateProfile = () => {
   };
   return (
     <Modal>
-      <div className="flex flex-col gap-3 w-full md:w-auto z-10">
-        <Button className="flex items-center justify-center gap-2 bg-[#914c00] text-white px-6 py-2.5 rounded-lg font-bold text-sm hover:bg-[#7a3f00] transition-all shadow-sm">
+      <div className="flex flex-col items-center gap-3 w-full md:w-auto z-10">
+        <Button className="flex   justify-center gap-2 bg-[#914c00] text-white px-6 py-2.5 rounded-lg font-bold text-sm hover:bg-[#7a3f00] transition-all shadow-sm">
           <LuSettings2 size={18} />
           Update Profile
         </Button>
@@ -146,7 +145,7 @@ const UpdateProfile = () => {
                     <div className="flex flex-col gap-2.5 w-full">
                       {/* Update button */}
                       <Button
-                      slot={isOpen && "close"}
+                        slot={isOpen && "close"}
                         type="submit"
                         className="w-full h-11 flex items-center justify-center gap-2 bg-[#914C00] hover:bg-[#7a3f00] text-white rounded-xl font-bold text-sm transition-colors shadow-sm"
                       >

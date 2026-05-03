@@ -13,7 +13,7 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "Courses", href: "/courses" },
   { label: " My Profile", href: "/my-profile" },
-  { label: "Resources", href: "/resources" },
+  
 ];
 
 const NavBar = () => {

@@ -3,7 +3,7 @@ import { authClient } from "@/app/lib/auth-client";
 import UpdateProfile from "@/components/shared/UpdateProfile";
 import Image from "next/image";
 import React from "react";
-import { LuMail, LuPencil} from "react-icons/lu";
+import { LuMail, LuPencil } from "react-icons/lu";
 import { ClockLoader } from "react-spinners";
 
 const MyProfile = () => {
@@ -11,10 +11,9 @@ const MyProfile = () => {
 
   const user = data?.user;
 
-
   return (
     <div className="p-6 bg-gray-50 min-h-[300px] flex items-center justify-center font-sans">
-      {isPending  ? (
+      {isPending ? (
         <div className="w-12 mx-auto">
           <ClockLoader size={50} />
         </div>
@@ -33,9 +32,11 @@ const MyProfile = () => {
                 />
               </div>
 
+              
               <button className="absolute bottom-1 right-1 bg-[#ff8c00] p-2 rounded-full border-2 border-white text-white shadow-lg hover:bg-[#e67e00] transition-colors">
                 <LuPencil size={16} strokeWidth={3} />
               </button>
+              
             </div>
 
             <div className="text-center md:text-left space-y-3">
@@ -59,8 +60,7 @@ const MyProfile = () => {
             </div>
           </div>
 
-          
-<UpdateProfile/>
+          <UpdateProfile />
           <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-orange-50 to-transparent opacity-50 -z-0 pointer-events-none" />
         </div>
       ) : (
