@@ -53,7 +53,7 @@ const NavBar = () => {
               );
             })}
           </div>
-         
+
           <div className="">
             {isPending ? (
               <div className="w-full md:w-6/12 mx-auto">
@@ -61,47 +61,49 @@ const NavBar = () => {
               </div>
             ) : user ? (
               <div className="hidden md:flex items-center gap-2.5 ml-auto">
-                <button
-                  onClick={async () => {
-                    try {
-                      await authClient.signOut();
-                      toast.success("SignOut successfully!", {
-                        style: {
-                          background: "#fff",
-                          color: "#1a1a1a",
-                          border: "1px solid #e8e3de",
-                          borderRadius: "12px",
-                          fontSize: "13px",
-                          fontWeight: "500",
-                          padding: "12px 16px",
-                        },
-                        iconTheme: {
-                          primary: "#914C00",
-                          secondary: "#fff",
-                        },
-                      });
-                    } catch {
-                      toast.error("Something Went Wrong", {
-                        style: {
-                          background: "#fff",
-                          color: "#1a1a1a",
-                          border: "1px solid #fecaca",
-                          borderRadius: "12px",
-                          fontSize: "13px",
-                          fontWeight: "500",
-                          padding: "12px 16px",
-                        },
-                        iconTheme: {
-                          primary: "#ef4444",
-                          secondary: "#fff",
-                        },
-                      });
-                    }
-                  }}
-                  className="px-5 py-1.5 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md transition-colors"
-                >
-                  Log Out
-                </button>
+                <Link href={"/login"}>
+                  <button
+                    onClick={async () => {
+                      try {
+                        await authClient.signOut();
+                        toast.success("SignOut successfully!", {
+                          style: {
+                            background: "#fff",
+                            color: "#1a1a1a",
+                            border: "1px solid #e8e3de",
+                            borderRadius: "12px",
+                            fontSize: "13px",
+                            fontWeight: "500",
+                            padding: "12px 16px",
+                          },
+                          iconTheme: {
+                            primary: "#914C00",
+                            secondary: "#fff",
+                          },
+                        });
+                      } catch {
+                        toast.error("Something Went Wrong", {
+                          style: {
+                            background: "#fff",
+                            color: "#1a1a1a",
+                            border: "1px solid #fecaca",
+                            borderRadius: "12px",
+                            fontSize: "13px",
+                            fontWeight: "500",
+                            padding: "12px 16px",
+                          },
+                          iconTheme: {
+                            primary: "#ef4444",
+                            secondary: "#fff",
+                          },
+                        });
+                      }
+                    }}
+                    className="px-5 py-1.5 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md transition-colors"
+                  >
+                    Log Out
+                  </button>
+                </Link>
 
                 <div className="flex items-center">
                   <Avatar>
