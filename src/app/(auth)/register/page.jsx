@@ -25,7 +25,7 @@ import { authClient } from "@/app/lib/auth-client";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 export default function RegisterPage() {
-  const router = useRouter()
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleRegister = async (e) => {
@@ -38,7 +38,6 @@ export default function RegisterPage() {
       email: userData.email, // required
       password: userData.password, // required
       image: userData.image,
-      
     });
     if (data) {
       toast.success("Register successfully!", {
@@ -56,7 +55,7 @@ export default function RegisterPage() {
           secondary: "#fff",
         },
       });
-      router.push("/")
+      router.push("/");
     }
     if (error) {
       toast.error(`${error.message}`, {
@@ -89,8 +88,8 @@ export default function RegisterPage() {
         <div className="hidden md:flex flex-col justify-between p-10 bg-gradient-to-br from-stone-50 to-orange-50/50 border-r border-stone-100">
           <div>
             <div className="flex items-center gap-2 mb-10">
-              <Image src="/logo.png" alt="SkillSphere" width={26} height={26} />
-              <span className="font-extrabold text-[15px] text-gray-900">
+              <Image src="/logo.png" alt="SkillSphere" width={30} height={26} />
+              <span className="font-extrabold text-[30px] text-gray-900">
                 SkillSphere
               </span>
             </div>
@@ -149,7 +148,7 @@ export default function RegisterPage() {
                 </div>
                 <FieldError className="text-[11px] text-red-500" />
               </TextField>
-
+              {/* photo url  */}
               <TextField name="image" className="flex flex-col gap-1.5">
                 <Label className="text-xs font-semibold text-gray-600">
                   Photo URL
@@ -158,7 +157,7 @@ export default function RegisterPage() {
                   <FiImage className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <Input
                     isRequired
-                    type="text"
+                    type="url"
                     placeholder="https://example.com/avatar."
                     className="w-full h-10 pl-9 pr-3 rounded-lg border border-gray-200 bg-gray-50 text-sm text-gray-900 placeholder:text-gray-300 focus:outline-none focus:border-[#914C00] focus:ring-2 focus:ring-[#914C00]/10 focus:bg-white transition-colors"
                   />
@@ -179,19 +178,17 @@ export default function RegisterPage() {
                   : null
               }
             >
-              <div className="flex items-center justify-between">
-                <Label className="text-xs font-semibold text-gray-600">
-                  Email
-                </Label>
-                <FieldError className="text-[11px] text-red-500" />
-              </div>
+              <Label className="text-xs font-semibold text-gray-600">
+                Email Address
+              </Label>
               <div className="relative">
                 <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <Input
-                  placeholder="john@example.com"
+                  placeholder="name@company.com"
                   className="w-full h-10 pl-9 pr-3 rounded-lg border border-gray-200 bg-gray-50 text-sm text-gray-900 placeholder:text-gray-300 focus:outline-none focus:border-[#914C00] focus:ring-2 focus:ring-[#914C00]/10 focus:bg-white transition-colors "
                 />
               </div>
+              <FieldError className="text-[11px] text-red-500" />
             </TextField>
 
             {/* Password */}
@@ -201,7 +198,8 @@ export default function RegisterPage() {
               type={showPassword ? "text" : "password"}
               className="flex flex-col gap-1.5"
               validate={(v) => {
-                if (v.length < 8) return "Must be at least 8 characters long.";
+                if (v.length < 8)
+                  return "Password Must be at least 8 characters long.";
                 if (!/[A-Z]/.test(v))
                   return "Must contain at least one uppercase letter.";
                 if (!/[0-9]/.test(v))
@@ -224,15 +222,13 @@ export default function RegisterPage() {
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   {showPassword ? (
-                    <FiEyeOff className="w-4 h-4" />
-                  ) : (
                     <FiEye className="w-4 h-4" />
+                  ) : (
+                    <FiEyeOff className="w-4 h-4" />
                   )}
                 </button>
               </div>
-              <Description className="text-[11px] text-gray-400 mt-0.5">
-                Must be at least 8 characters long.
-              </Description>
+
               <FieldError className="text-[11px] text-red-500" />
             </TextField>
 

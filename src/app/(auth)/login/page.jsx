@@ -159,7 +159,7 @@ export default function LoginPage() {
               type={showPassword ? "text" : "password"}
               className="flex flex-col gap-1.5"
               validate={(v) => {
-                if (v.length < 8) return "Must be at least 8 characters long.";
+                if (v.length < 8) return "Password Must be at least 8 characters long.";
 
                 return null;
               }}
@@ -179,15 +179,13 @@ export default function LoginPage() {
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   {showPassword ? (
-                    <FiEyeOff className="w-4 h-4" />
-                  ) : (
                     <FiEye className="w-4 h-4" />
+                  ) : (
+                    <FiEyeOff className="w-4 h-4" />
                   )}
                 </button>
               </div>
-              <Description className="text-[11px] text-gray-400 mt-0.5">
-                Must be at least 8 characters long.
-              </Description>
+             
               <FieldError className="text-[11px] text-red-500" />
             </TextField>
 
