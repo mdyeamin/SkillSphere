@@ -1,5 +1,4 @@
 "use client";
-import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -7,7 +6,6 @@ import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { FaArrowRight, FaStar } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { LuUsers } from "react-icons/lu";
 import { MdVerified } from "react-icons/md";
 import Link from "next/link";
 import Image from "next/image";
@@ -52,7 +50,6 @@ const courses = [
     duration: "30 hours",
     image: "/Full-StackWeb.jpeg",
   },
-  
   {
     title: "The Ultimate Guide to",
     titleAccent: "Cyber Security",
@@ -108,9 +105,6 @@ const courses = [
 ];
 
 const HeroSection = () => {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
-
   return (
     <section className="max-w-7xl mx-auto overflow-hidden relative group">
       
@@ -125,31 +119,24 @@ const HeroSection = () => {
         loop={true}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
+        // Ref এর বদলে সরাসরি ইউনিক ক্লাস নেম দিয়ে নেভিগেশন কানেক্ট করা হয়েছে
         navigation={{
-          prevEl: prevRef.current,
-          nextEl: nextRef.current,
-        }}
-        onBeforeInit={(swiper) => {
-          swiper.params.navigation.prevEl = prevRef.current;
-          swiper.params.navigation.nextEl = nextRef.current;
+          prevEl: ".hero-prev-btn",
+          nextEl: ".hero-next-btn",
         }}
         className="hero-swiper z-10"
       >
         {courses.map((course, index) => (
           <SwiperSlide key={index}>
-            {/* Height Adjusted to min-h and increased for responsiveness */}
-            <div className="flex  flex-row items-center justify-between gap-3 md:gap-8 px-4 sm:px-10 lg:px-20 py-8  min-h-30 sm:min-h-[250px] lg:min-h-[450px]">
+            <div className="flex flex-row items-center justify-between gap-3 md:gap-8 px-4 sm:px-10 lg:px-20 py-8 min-h-30 sm:min-h-[250px] lg:min-h-[450px]">
 
               {/* ── Left Content ── */}
               <div className="w-[55%] sm:w-1/2 flex flex-col gap-2 md:gap-4 text-left items-start z-10">
-
-                {/* Tag badge */}
                 <div className="inline-flex items-center gap-1 bg-white/80 backdrop-blur-sm text-gray-700 border border-gray-100 text-[9px] sm:text-xs font-bold px-2.5 py-1 rounded-full shadow-sm">
                   <FaStar className="text-[#914C00]" size={10} />
                   {course.tag}
                 </div>
 
-                {/* Title */}
                 <div>
                   <h1 className="text-sm sm:text-2xl lg:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">
                     {course.title}
@@ -159,12 +146,10 @@ const HeroSection = () => {
                   </h1>
                 </div>
 
-                {/* Description */}
                 <p className="hidden sm:block text-xs lg:text-sm text-gray-600 leading-relaxed max-w-md">
                   {course.description}
                 </p>
 
-                {/* CTA buttons */}
                 <div className="flex items-center gap-2 flex-wrap mt-1 md:mt-2">
                   <Link
                     href="/categories"
@@ -180,7 +165,6 @@ const HeroSection = () => {
                   </Link>
                 </div>
 
-                {/* Stats */}
                 <div className="hidden md:flex items-center gap-4 pt-2">
                   <div className="flex flex-col items-start">
                     <div className="flex items-center gap-1">
@@ -188,11 +172,7 @@ const HeroSection = () => {
                         <FaStar
                           key={i}
                           size={11}
-                          className={
-                            i < Math.floor(course.rating)
-                              ? "text-[#914C00]"
-                              : "text-gray-200"
-                          }
+                          className={i < Math.floor(course.rating) ? "text-[#914C00]" : "text-gray-200"}
                         />
                       ))}
                     </div>
@@ -222,19 +202,12 @@ const HeroSection = () => {
                     height={248}
                     className="object-cover w-full h-full"
                   />
-
-                  {/* Accredited badge */}
                   <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-white/95 backdrop-blur-sm rounded-lg sm:rounded-xl px-2 py-1.5 sm:px-3 sm:py-2 flex items-center gap-1.5 sm:gap-2 shadow-md border border-gray-100">
                     <div className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#914C00]/10 flex items-center justify-center">
                       <MdVerified className="text-[#914C00] text-[10px] sm:text-sm" />
                     </div>
                     <div className="hidden sm:block">
-                      <p className="text-[10px] font-bold text-gray-900 leading-none">
-                        Accredited
-                      </p>
-                      <p className="text-[9px] text-gray-400 leading-none mt-0.5">
-                        Global Certification
-                      </p>
+                      <p className="text-[10px] font-bold text-gray-900 leading-none"> Accredited </p>
                     </div>
                   </div>
                 </div>
@@ -245,16 +218,14 @@ const HeroSection = () => {
         ))}
       </Swiper>
 
-      {/* ── Hover Navigation Buttons ── */}
+      {/* ── Hover Navigation Buttons (Class names are important here) ── */}
       <button
-        ref={prevRef}
-        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-white flex items-center justify-center transition-all duration-300 shadow-md opacity-0 group-hover:opacity-100 active:scale-95 disabled:hidden"
+        className="hero-prev-btn absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-white flex items-center justify-center transition-all duration-300 shadow-md opacity-0 group-hover:opacity-100 active:scale-95 disabled:hidden"
       >
         <FiChevronLeft size={18} strokeWidth={2.5} />
       </button>
       <button
-        ref={nextRef}
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-white flex items-center justify-center transition-all duration-300 shadow-md opacity-0 group-hover:opacity-100 active:scale-95 disabled:hidden"
+        className="hero-next-btn absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-white flex items-center justify-center transition-all duration-300 shadow-md opacity-0 group-hover:opacity-100 active:scale-95 disabled:hidden"
       >
         <FiChevronRight size={18} strokeWidth={2.5} />
       </button>
