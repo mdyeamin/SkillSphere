@@ -40,7 +40,8 @@ export default function RegisterPage() {
       image: userData.image,
     });
     if (data) {
-      toast.success("Register successfully!", {
+      await authClient.signOut();
+      toast.success("Account created! Please login to continue.", {
         style: {
           background: "#fff",
           color: "#1a1a1a",
@@ -55,7 +56,9 @@ export default function RegisterPage() {
           secondary: "#fff",
         },
       });
-      router.push("/");
+      setTimeout(() => {
+        router.push("/login");
+      }, 500);
     }
     if (error) {
       toast.error(`${error.message}`, {

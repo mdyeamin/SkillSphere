@@ -53,27 +53,7 @@ const NavBar = () => {
               );
             })}
           </div>
-          <div className="relative hidden md:flex items-center mr-6">
-            <svg
-              className="absolute left-3 text-gray-400 w-3.5 h-3.5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <circle cx="11" cy="11" r="8" />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-4.35-4.35"
-              />
-            </svg>
-            <input
-              type="text"
-              placeholder="Search courses"
-              className="h-9 w-52 pl-8 pr-3 rounded-full border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:border-[#914C00] focus:bg-white transition-colors"
-            />
-          </div>
+         
           <div className="">
             {isPending ? (
               <div className="w-full md:w-6/12 mx-auto">
