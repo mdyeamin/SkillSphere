@@ -85,7 +85,7 @@ const HeroSection = () => {
         {courses.map((course, index) => (
           <SwiperSlide key={index}>
             {/* Height Adjusted to min-h and increased for responsiveness */}
-            <div className="flex  flex-row items-center justify-between gap-3 md:gap-8 px-4 sm:px-10 lg:px-20 py-8  min-h-95 sm:min-h-[450px] lg:min-h-[450px]">
+            <div className="flex  flex-row items-center justify-between gap-3 md:gap-8 px-4 sm:px-10 lg:px-20 py-8  min-h-30 sm:min-h-[250px] lg:min-h-[450px]">
 
               {/* ── Left Content ── */}
               <div className="w-[55%] sm:w-1/2 flex flex-col gap-2 md:gap-4 text-left items-start z-10">
