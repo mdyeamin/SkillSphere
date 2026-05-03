@@ -13,13 +13,11 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "Courses", href: "/courses" },
   { label: " My Profile", href: "/my-profile" },
-  
 ];
 
 const NavBar = () => {
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
-
 
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
@@ -179,17 +177,67 @@ const NavBar = () => {
                 );
               })}
             </div>
-            <div className="flex flex-col gap-2 px-4 pb-4 pt-3 border-t border-gray-100">
-              <Link href={"/login"}>
-                <button className="w-full py-2 text-sm font-medium border border-gray-200 rounded-md hover:bg-gray-50">
-                  Log In
-                </button>
-              </Link>
-              <Link href={"/register"}>
-                <button className="w-full py-2 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md">
-                  Sign Up
-                </button>
-              </Link>
+            <div className="">
+              {isPending ? (
+                ""
+              ) : user ? (
+                <div className="flex flex-col gap-2 px-4 pb-4 pt-3 border-t border-gray-100">
+                  <button
+                    onClick={async () => {
+                      try {
+                        await authClient.signOut();
+                        toast.success("SignOut successfully!", {
+                          style: {
+                            background: "#fff",
+                            color: "#1a1a1a",
+                            border: "1px solid #e8e3de",
+                            borderRadius: "12px",
+                            fontSize: "13px",
+                            fontWeight: "500",
+                            padding: "12px 16px",
+                          },
+                          iconTheme: {
+                            primary: "#914C00",
+                            secondary: "#fff",
+                          },
+                        });
+                      } catch {
+                        toast.error("Something Went Wrong", {
+                          style: {
+                            background: "#fff",
+                            color: "#1a1a1a",
+                            border: "1px solid #fecaca",
+                            borderRadius: "12px",
+                            fontSize: "13px",
+                            fontWeight: "500",
+                            padding: "12px 16px",
+                          },
+                          iconTheme: {
+                            primary: "#ef4444",
+                            secondary: "#fff",
+                          },
+                        });
+                      }
+                    }}
+                    className="px-5 py-1.5 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md transition-colors"
+                  >
+                    Log Out
+                  </button>
+                </div>
+              ) : (
+                <div className="flex flex-col gap-2 px-4 pb-4 pt-3 border-t border-gray-100">
+                  <Link href={"/login"}>
+                    <button className="w-full py-2 text-sm font-medium border border-gray-200 rounded-md hover:bg-gray-50">
+                      Log In
+                    </button>
+                  </Link>
+                  <Link href={"/register"}>
+                    <button className="w-full py-2 text-sm font-bold text-white bg-[#914C00] hover:bg-[#7a3f00] rounded-md">
+                      Sign Up
+                    </button>
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         )}
