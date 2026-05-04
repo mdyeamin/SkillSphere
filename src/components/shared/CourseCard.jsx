@@ -4,6 +4,7 @@ import { LuClock3 } from "react-icons/lu";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { FaDollarSign } from "react-icons/fa";
 const CourseCard = ({ course }) => {
   const {
     title,
@@ -12,7 +13,7 @@ const CourseCard = ({ course }) => {
     rating,
     id,
     image,
-
+discount_price,
     category,
   } = course;
 
@@ -63,9 +64,9 @@ const CourseCard = ({ course }) => {
               </span>
             </div>
 
-            <div className="flex items-center gap-2 text-gray-500">
-              <LuClock3 className="text-lg" />
-              <span className="text-sm font-semibold">{duration}</span>
+            <div className="flex items-center  ">
+              <FaDollarSign className="text-lg"/>
+              <span className="text-lg font-semibold">{discount_price}</span>
             </div>
           </div>
 
