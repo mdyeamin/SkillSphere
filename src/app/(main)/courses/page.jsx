@@ -1,5 +1,6 @@
 import CategoryFilterAndSearch from "@/components/shared/CategoryFilterAndSearch";
 import CourseCard from "@/components/shared/CourseCard";
+import NoProduct from "@/components/shared/NotProduct";
 import { getCourse } from "@/data";
 import React, { Suspense } from "react";
 import { ClockLoader } from "react-spinners";
@@ -45,11 +46,11 @@ const AllCourse = async ({ searchParams }) => {
           </div>
         }
       >
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 mb-20 lg:grid-cols-4 gap-5 ">
+        {filteredCourses.length > 0 ? <div className="max-w-7xl mx-auto grid md:grid-cols-2 mb-20 lg:grid-cols-4 gap-5 ">
           {filteredCourses.map((course) => (
             <CourseCard key={course.id} course={course} />
           ))}
-        </div>
+        </div>: <NoProduct/>}
       </Suspense>
     </section>
   );
