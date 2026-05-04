@@ -66,7 +66,7 @@ const NavBar = () => {
                     onClick={async () => {
                       try {
                         await authClient.signOut();
-                        toast.success("SignOut successfully!", {
+                        toast.success("Goodbye! Hope to see you back soon.", {
                           style: {
                             background: "#fff",
                             color: "#1a1a1a",
@@ -164,11 +164,12 @@ const NavBar = () => {
                 ""
               ) : user ? (
                 <div className="flex flex-col gap-2 px-4 pb-4 pt-3 border-t border-gray-100">
+                  <Link href={'/login'}>
                   <button
                     onClick={async () => {
                       try {
                         await authClient.signOut();
-                        toast.success("SignOut successfully!", {
+                        toast.success("Goodbye! Hope to see you back soon.", {
                           style: {
                             background: "#fff",
                             color: "#1a1a1a",
@@ -205,6 +206,7 @@ const NavBar = () => {
                   >
                     Log Out
                   </button>
+                  </Link>
                 </div>
               ) : (
                 <div className="flex flex-col gap-2 px-4 pb-4 pt-3 border-t border-gray-100">
